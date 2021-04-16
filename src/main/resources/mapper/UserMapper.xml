@@ -14,6 +14,9 @@
   <select id="findPswByName" resultType="String">
     select password from user where username = #{username}
   </select>
+  <select id="selectPageVo" resultType="com.czh.labmaster.model.User">
+    select * from user  where username like #{username}
+  </select>
   <insert id="save">
     insert into user(username,password,email,repassword) value (#{username},#{password},#{email},#{repassword})
   </insert>

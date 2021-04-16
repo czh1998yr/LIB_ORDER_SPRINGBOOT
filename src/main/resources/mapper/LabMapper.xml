@@ -4,5 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.czh.labmaster.mapper.LabMapper">
-  <!-- 登录 -->
+  <resultMap id="ResultMaplab" type="com.czh.labmaster.model.Lab">
+    <result property="id" column="id" jdbcType="INTEGER"/>
+    <result property="name" column="name" jdbcType="VARCHAR"/>
+    <result property="major" column="major" jdbcType="VARCHAR"/>
+    <result property="num" column="num" jdbcType="INTEGER"/>
+    <result property="state" column="state" jdbcType="VARCHAR"/>
+   </resultMap>
+  <select id="findBymajor" parameterType="com.czh.labmaster.model.Lab" resultMap="ResultMaplab">
+    select * from lab  where major like #{major}
+  </select>
 </mapper>

@@ -3,17 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.czh.labmaster.mapper.LabMapper">
-
-  <resultMap id="ResultMaplab" type="com.czh.labmaster.model.Lab">
+<mapper namespace="com.czh.labmaster.mapper.OrdersMapper">
+  <resultMap id="ResultMaporders" type="com.czh.labmaster.model.Orders">
     <result property="id" column="id" jdbcType="INTEGER"/>
-    <result property="name" column="name" jdbcType="VARCHAR"/>
-    <result property="major" column="major" jdbcType="VARCHAR"/>
-    <result property="num" column="num" jdbcType="INTEGER"/>
-    <result property="state" column="state" jdbcType="VARCHAR"/>
-   </resultMap>
-  <!-- 登录 -->
-  <select id="findBymajor" parameterType="com.czh.labmaster.model.Lab" resultMap="ResultMaplab">
-    select * from lab  where major like #{major}
+    <result property="username" column="username" jdbcType="VARCHAR"/>
+    <result property="labname" column="labname" jdbcType="VARCHAR"/>
+    <result property="starttime" column="starttime" jdbcType="INTEGER"/>
+    <result property="endtime" column="endtime" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <insert id="lab_order">
+    INSERT INTO orders(username,labname,starttime,endtime)VALUES(#{username}, #{labname}, #{starttime}, #{endtime})
+  </insert>
+  <select id="findTime" parameterType="com.czh.labmaster.model.Orders" resultMap="ResultMaporders">
+    SELECT starttime,endtime FROM orders WHERE labname = #{labname}
   </select>
 </mapper>

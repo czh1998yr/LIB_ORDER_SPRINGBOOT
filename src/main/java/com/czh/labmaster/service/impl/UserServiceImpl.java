@@ -1,5 +1,7 @@
 package com.czh.labmaster.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.base.result.ResultCode;
@@ -47,5 +49,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         userMapper.save(user);
         return Result.success();
       }
+  }
+
+  @Override
+  public IPage<User> selectPageall(Integer size, Integer current, String username) {
+    Page<User> page = new Page<>(current,size);
+    System.out.println(size);
+    System.out.println(current);
+    return userMapper.selectPageVo(page,"%"+username+"%");
   }
 }

@@ -6,7 +6,9 @@ public enum ResultCode {
 	FAIL(500,"失败"),
 	USER_LOGIN_ERROR1(500201,"登录失败，用户名或密码错误，请重新输入"),
 	USER_LOGIN_ERROR2(500202,"登陆失败，账户不存在"),
-	USER_REGISTER_ERROR(500203,"注册失败，账户已经存在");
+	USER_REGISTER_ERROR(500203,"注册失败，账户已经存在"),
+	LAB_ORDER_SUCCESS(200201,"恭喜您，预约成功！"),
+	;
 
 	private Integer code;
 	
