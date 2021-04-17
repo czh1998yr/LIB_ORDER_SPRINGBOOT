@@ -52,10 +52,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
   }
 
   @Override
+  public Result<Object> revise(User user) {
+    String newpassword = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+    user.setPassword(newpassword);
+    userMapper.revise(user);
+    return Result.success();
+  }
+
+  @Override
+  public User id(Integer id) {
+    return userMapper.selectById(id);
+  }
+
+  @Override
+  public int deluser(Integer id) {
+    return userMapper.deleteById(id);
+  }
+
+  @Override
   public IPage<User> selectPageall(Integer size, Integer current, String username) {
     Page<User> page = new Page<>(current,size);
-    System.out.println(size);
-    System.out.println(current);
     return userMapper.selectPageVo(page,"%"+username+"%");
   }
 }

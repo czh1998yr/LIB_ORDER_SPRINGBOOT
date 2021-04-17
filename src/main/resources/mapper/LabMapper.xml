@@ -11,7 +11,13 @@
     <result property="num" column="num" jdbcType="INTEGER"/>
     <result property="state" column="state" jdbcType="VARCHAR"/>
    </resultMap>
-  <select id="findBymajor" parameterType="com.czh.labmaster.model.Lab" resultMap="ResultMaplab">
+  <insert id="addlab">
+    insert into lab(name,major,num,state) value (#{name},#{major},#{num},#{state})
+  </insert>
+  <update id="revise">
+    update lab set name = #{name},major= #{major}, num= #{num} WHERE id = #{id}
+  </update>
+  <select id="selectPageVo" resultType="com.czh.labmaster.model.Lab">
     select * from lab  where major like #{major}
   </select>
 </mapper>

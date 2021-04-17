@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.czh.labmaster.mapper.UserMapper">
+  <update id="revise">
+    update user set password = #{password},repassword= #{repassword},email= #{email} WHERE id = #{id}
+  </update>
   <!-- 登录 -->
   <select id="findAll" resultType="com.czh.labmaster.model.User">
     select * from User

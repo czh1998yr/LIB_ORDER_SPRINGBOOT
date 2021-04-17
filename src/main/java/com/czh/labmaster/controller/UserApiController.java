@@ -31,6 +31,14 @@ public class UserApiController extends BaseApiController {
 
   @RequestMapping("/userslist")
   IPage<User> selectPageVo(Integer size, Integer current, String username) {
-    return userService.selectPageall(size,current,username);
-  };
+    return userService.selectPageall(size,current,username);  }
+
+  @RequestMapping("/revise")
+  public Result<Object> revise(User user) {return userService.revise(user);};
+
+  @RequestMapping("/userid")
+  public User id(Integer id){return userService.id(id);};
+
+  @RequestMapping("/delid")
+  public int deluser(Integer id){return userService.deluser(id);};
 }

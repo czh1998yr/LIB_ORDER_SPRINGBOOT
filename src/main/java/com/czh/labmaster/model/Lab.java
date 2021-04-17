@@ -14,15 +14,4 @@ public class Lab {
   private String major="";
   private int num;
   private String state="";
-
-  @Override
-  public String toString() {
-    return "Lab{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", major='" + major + '\'' +
-            ", num=" + num +
-            ", state='" + state + '\'' +
-            '}';
-  }
 }

@@ -15,5 +15,6 @@ public interface UserMapper extends BaseMapper<User> {
   User findByName(String name);
   String findPswByName(String UserName);
   void save(User user);
+  void revise(User user);
   IPage<User> selectPageVo(Page<?> page, String username);
 }
