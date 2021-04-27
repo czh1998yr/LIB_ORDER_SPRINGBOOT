@@ -6,9 +6,9 @@
 <mapper namespace="com.czh.labmaster.mapper.AdminMapper">
   <!-- 登录 -->
   <select id="findByName" resultType="com.czh.labmaster.model.Admin">
-    select * from User where username = #{username}
+    select * from admin where username = #{username}
   </select>
   <select id="findPswByName" resultType="String">
-    select password from user where username = #{username}
+    select password from admin where username = #{username}
   </select>
 </mapper>

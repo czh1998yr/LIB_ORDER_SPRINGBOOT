@@ -17,6 +17,9 @@
   <update id="revise">
     update lab set name = #{name},major= #{major}, num= #{num} WHERE id = #{id}
   </update>
+  <update id="upState">
+    update lab set state = #{state} where id=#{id}
+  </update>
   <select id="selectPageVo" resultType="com.czh.labmaster.model.Lab">
     select * from lab  where major like #{major}
   </select>

@@ -1,18 +1,25 @@
 package com.czh.labmaster.model;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class Orders {
   private Long id;
+  private Long lid;
   private String username;
   private String labname;
-  private Long starttime;
-  private Long endtime;
+
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+  private Date starttime;
+
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+  private Date endtime;
 }

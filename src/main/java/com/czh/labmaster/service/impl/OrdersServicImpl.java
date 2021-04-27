@@ -1,30 +1,34 @@
 package com.czh.labmaster.service.impl;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.base.result.ResultCode;
+import com.czh.labmaster.mapper.LabMapper;
 import com.czh.labmaster.mapper.OrdersMapper;
+import com.czh.labmaster.model.Lab;
 import com.czh.labmaster.model.Orders;
 import com.czh.labmaster.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Locale;
+
 
 @Service
 public class OrdersServicImpl extends ServiceImpl<OrdersMapper, Orders> implements OrdersService {
 
   @Autowired
   OrdersMapper ordersMapper;
+
+  @Autowired
+  LabMapper labMapper;
 
   @Override
   public Result<Object> lab_order(Orders orders) throws ParseException {
@@ -51,7 +55,35 @@ public class OrdersServicImpl extends ServiceImpl<OrdersMapper, Orders> implemen
 //    }else {
 //      System.out.println("预约成功2");
 //    }
-    ordersMapper.lab_order(orders);
+
+    /*
+    把前台返回的时间转成yyyy-MM-dd HH:mm格式并写入实验室总数据库，并根据被预约的实验室的id更改实验室状态
+     */
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String starttime = simpleDateFormat.format(orders.getStarttime());
+    String endttime = simpleDateFormat.format(orders.getEndtime());
+    String state = starttime+"至"+endttime+"/被"+orders.getUsername()+"预约！";
+    int id = Math.toIntExact(orders.getLid());
+    labMapper.upState(state,id);
+
+    /*
+      String(yyyy-MM-dd HH:mm:ss)转10位时间戳
+     */
+    int starttimeTimestanmp = (int) ((Timestamp.valueOf(starttime).getTime()) / 1000);
+    int endttimeTimestanmp = (int) ((Timestamp.valueOf(endttime).getTime()) / 1000);
+
+    System.out.println("开始时间戳："+starttimeTimestanmp+"结束时间戳："+endttimeTimestanmp);
+    /*
+    把预约信息写入预约表中
+     */
+    ordersMapper.order(orders);
     return Result.success();
   }
+
+  @Override
+  public IPage<Orders> selectPageMyOrder(Integer size, Integer current, String username) {
+    Page<Orders> page = new Page<>(current,size);
+    return ordersMapper.selectPageMyOrder(page,username);
+  }
+
 }

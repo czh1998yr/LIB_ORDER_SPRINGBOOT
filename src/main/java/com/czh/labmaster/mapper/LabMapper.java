@@ -13,4 +13,5 @@ public interface LabMapper extends BaseMapper<Lab> {
   IPage<Lab> selectPageVo(Page<Lab> page, String major);
   void addlab(Lab lab);
   void revise(Lab lab);
+  void upState(String state,int id);
 }

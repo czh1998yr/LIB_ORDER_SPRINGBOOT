@@ -53,7 +53,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
   @Override
   public Result<Object> revise(User user) {
-    String newpassword = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+    String newpassword = DigestUtils.md5DigestAsHex(user.getRepassword().getBytes());
     user.setPassword(newpassword);
     userMapper.revise(user);
     return Result.success();

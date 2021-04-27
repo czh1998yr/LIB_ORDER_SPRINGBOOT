@@ -1,5 +1,6 @@
 package com.czh.labmaster.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.czh.labmaster.base.controller.BaseApiController;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.model.Orders;
@@ -10,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 public class OrderApiController extends BaseApiController {
@@ -23,4 +22,6 @@ public class OrderApiController extends BaseApiController {
   public Result<Object> order(Orders orders) throws ParseException {
     return ordersService.lab_order(orders);
   }
+  @RequestMapping("/myorder")
+  public IPage<Orders> selectPageall(Integer size, Integer current, String username){return ordersService.selectPageMyOrder(size,current,username);};
 }
