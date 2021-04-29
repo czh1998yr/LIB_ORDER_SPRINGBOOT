@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Lab {
-
+public class Labs {
   private Long id;
-  private String name="";
+  private String labname="";
   private String major="";
-  private int num;
-  private String state="";
+  private Long labnum;
 }

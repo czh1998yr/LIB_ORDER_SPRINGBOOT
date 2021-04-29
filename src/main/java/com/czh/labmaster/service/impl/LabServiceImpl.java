@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.mapper.LabMapper;
-import com.czh.labmaster.model.Lab;
+import com.czh.labmaster.model.Labs;
 import com.czh.labmaster.service.LabService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,36 +13,44 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class LabServiceImpl extends ServiceImpl<LabMapper, Lab> implements LabService {
+public class LabServiceImpl extends ServiceImpl<LabMapper, Labs> implements LabService {
 
   @Autowired
   LabMapper labMapper;
 
+
+//  获取所有实验室列表
   @Override
-  public IPage<Lab> selectPageall(Integer size, Integer current, String major) {
-    Page<Lab> page = new Page<>(current,size);
-    return labMapper.selectPageVo(page,"%"+major+"%");
+  public IPage<Labs> AllLab(Integer size, Integer current, String major) {
+    Page<Labs> page = new Page<>(current,size);
+
+    return labMapper.AllLab(page,"%"+major+"%");
   }
 
   @Override
-  public Result<Object> addlab(Lab lab) {
-    labMapper.addlab(lab);
+  public Result<Object> addlab(Labs labs) {
+    labMapper.addlab(labs);
     return Result.success();
   }
 
   @Override
-  public Lab id(Integer id) {
-    return labMapper.selectById(id);
+  public Labs labnum(Integer labnum) {
+    return labMapper.selectBylabnum(labnum);
   }
 
   @Override
-  public Result<Object> revise(Lab lab) {
-    labMapper.revise(lab);
+  public Result<Object> revise(Labs labs) {
+    labMapper.revise(labs);
     return Result.success();
   }
 
   @Override
   public int dellab(Integer id) {
     return labMapper.deleteById(id);
+  }
+
+  @Override
+  public Labs selectbyid(Integer id) {
+    return  labMapper.selectById(id);
   }
 }

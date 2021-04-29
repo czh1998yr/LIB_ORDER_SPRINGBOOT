@@ -1,6 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-</beans>
+<mapper namespace="com.czh.labmaster.mapper.WeekMapper">
+  <select id="findAll" resultType="com.czh.labmaster.model.Week">
+    SELECT DISTINCT week FROM week WHERE termstate = #{termstate}
+  </select>
+  <select id="checkLabByWeek" resultType="com.czh.labmaster.model.Week">
+    select * from week WHERE `week` = #{week}
+  </select>
+</mapper>

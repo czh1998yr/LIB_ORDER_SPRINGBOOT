@@ -7,6 +7,9 @@
   <update id="revise">
     update user set password = #{password},repassword= #{repassword},email= #{email} WHERE id = #{id}
   </update>
+  <update id="uppwd">
+    UPDATE user SET password = #{password} ,repassword = #{repassword} WHERE username = #{username} and email = #{email}
+  </update>
   <!-- 登录 -->
   <select id="findAll" resultType="com.czh.labmaster.model.User">
     select * from User
@@ -19,6 +22,9 @@
   </select>
   <select id="selectPageVo" resultType="com.czh.labmaster.model.User">
     select * from user  where username like #{username}
+  </select>
+  <select id="findByEmail" resultType="String">
+    select email from User where email = #{email}
   </select>
   <insert id="save">
     insert into user(username,password,email,repassword) value (#{username},#{password},#{email},#{repassword})

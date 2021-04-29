@@ -1,6 +1,6 @@
 package com.czh.labmaster.base.Vo;
 
-import com.czh.labmaster.model.Lab;
+import com.czh.labmaster.model.Labs;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public class LabVo {
   private Integer size;
   private Integer item;
   private Long total;
-  private List<Lab> labList;
+  private List<Labs> labsList;
 }

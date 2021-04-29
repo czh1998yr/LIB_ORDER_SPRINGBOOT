@@ -4,23 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.czh.labmaster.mapper.LabMapper">
-  <resultMap id="ResultMaplab" type="com.czh.labmaster.model.Lab">
-    <result property="id" column="id" jdbcType="INTEGER"/>
-    <result property="name" column="name" jdbcType="VARCHAR"/>
-    <result property="major" column="major" jdbcType="VARCHAR"/>
-    <result property="num" column="num" jdbcType="INTEGER"/>
-    <result property="state" column="state" jdbcType="VARCHAR"/>
-   </resultMap>
+<!--  <resultMap id="ResultMaplab" type="com.czh.labmaster.model.Labs">-->
+<!--    <result property="id" column="id" jdbcType="INTEGER"/>-->
+<!--    <result property="name" column="name" jdbcType="VARCHAR"/>-->
+<!--    <result property="major" column="major" jdbcType="VARCHAR"/>-->
+<!--    <result property="num" column="num" jdbcType="INTEGER"/>-->
+<!--    <result property="state" column="state" jdbcType="VARCHAR"/>-->
+<!--   </resultMap>-->
   <insert id="addlab">
-    insert into lab(name,major,num,state) value (#{name},#{major},#{num},#{state})
+    insert into labs(labname,major,labnum) value (#{labname},#{major},#{labnum})
   </insert>
   <update id="revise">
-    update lab set name = #{name},major= #{major}, num= #{num} WHERE id = #{id}
+    update labs set name = #{name},major= #{major}, num= #{num} WHERE id = #{id}
   </update>
   <update id="upState">
-    update lab set state = #{state} where id=#{id}
+    update labs set state = #{state} where id=#{id}
   </update>
-  <select id="selectPageVo" resultType="com.czh.labmaster.model.Lab">
-    select * from lab  where major like #{major}
+<!--  //  获取所有实验室列表-->
+  <select id="AllLab" resultType="com.czh.labmaster.model.Labs">
+    select * from labs  where major like #{major}
+  </select>
+  <select id="findAll" resultType="com.czh.labmaster.model.Week">
+    select * from week group by week
+  </select>
+  <select id="selectBylabnum" resultType="com.czh.labmaster.model.Labs">
+    select * FROM labs where labnum = #{labnum}
   </select>
 </mapper>

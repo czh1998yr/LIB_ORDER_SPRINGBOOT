@@ -2,9 +2,8 @@ package com.czh.labmaster;
 
 import com.czh.labmaster.mapper.LabMapper;
 import com.czh.labmaster.mapper.UserMapper;
-import com.czh.labmaster.model.Lab;
+import com.czh.labmaster.model.Labs;
 import com.czh.labmaster.model.User;
-import com.czh.labmaster.service.LabService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +39,8 @@ class LabmasterApplicationTests {
 
   @Test
   void testLabMapper() {
-    Lab lab = labMapper.selectById(1L);
-    log.info("用户信息: {}", lab);
+    Labs labs = labMapper.selectById(1L);
+    log.info("用户信息: {}", labs);
   }
 
 }

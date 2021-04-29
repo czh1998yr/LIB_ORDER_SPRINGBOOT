@@ -13,8 +13,10 @@ import java.util.List;
 public interface UserMapper extends BaseMapper<User> {
   List<User> findAll();
   User findByName(String name);
+  String findByEmail(String email);
   String findPswByName(String UserName);
   void save(User user);
   void revise(User user);
   IPage<User> selectPageVo(Page<?> page, String username);
+  void uppwd(User user);
 }

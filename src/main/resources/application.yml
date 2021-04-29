@@ -37,3 +37,10 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+
+#mybatis-plus
+  mybatis-plus:
+    configuration:
+      map-underscore-to-camel-case: false
+
+

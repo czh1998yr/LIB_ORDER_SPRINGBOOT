@@ -2,14 +2,12 @@ package com.czh.labmaster.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.czh.labmaster.base.controller.BaseApiController;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.model.User;
 import com.czh.labmaster.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,4 +39,7 @@ public class UserApiController extends BaseApiController {
 
   @RequestMapping("/delid")
   public int deluser(Integer id){return userService.deluser(id);};
+
+  @RequestMapping("/uppwd")
+  public Result<Object> UPWD(User user){return userService.UPWD(user);};
 }

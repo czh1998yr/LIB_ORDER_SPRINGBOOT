@@ -9,8 +9,8 @@ import com.czh.labmaster.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
-
 import java.util.UUID;
+
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper , Admin> implements AdminService {
 

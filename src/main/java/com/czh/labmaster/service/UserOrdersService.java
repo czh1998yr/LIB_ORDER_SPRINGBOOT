@@ -4,21 +4,17 @@ import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.czh.labmaster.base.result.Result;
-import com.czh.labmaster.model.Orders;
+import com.czh.labmaster.model.UserOrders;
 
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
 
 
-public interface OrdersService extends IService<Orders> {
-  public Result<Object> lab_order(@RequestBody JSONArray orders) throws ParseException;
-
-//    根据周数及实验室编号搜索改天的实验室
-    public IPage<Orders> checkorders(Integer size, Integer current, Integer week, Integer labnum);
-
-  IPage<Orders> selectPageMyOrder(Integer size, Integer current, String username);
+public interface UserOrdersService extends IService<UserOrders> {
+  IPage<UserOrders> selectPageMyOrder(Integer size, Integer current, String username);
+  Result<Object> adduserorders(@RequestBody JSONArray userorders) throws ParseException;
+  Result<Object> delbyid(Integer id) throws ParseException;
+  IPage<UserOrders> selectPageUserOrder(Integer size, Integer current);
+  IPage<UserOrders> selectPageUserOrderByName(Integer size, Integer current, String username);
 }

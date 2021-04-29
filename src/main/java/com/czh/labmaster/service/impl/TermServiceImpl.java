@@ -5,7 +5,8 @@ import com.czh.labmaster.mapper.TermMapper;
 import com.czh.labmaster.mapper.WeekMapper;
 import com.czh.labmaster.model.Term;
 import com.czh.labmaster.model.Week;
-import com.czh.labmaster.service.WeekService;
+import com.czh.labmaster.service.TermService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class WeekServiceImpl extends ServiceImpl<WeekMapper,Week> implements WeekService {
+public class TermServiceImpl extends ServiceImpl<TermMapper, Term> implements TermService {
 
   @Autowired
-  WeekMapper weekMapper;
+  TermMapper termMapper;
 
   @Override
-  public List<Week> findAll(int termstate) {
-    return weekMapper.findAll(termstate);
+  public List<Term> findAll() {
+    return termMapper.selectByMap(null);
   }
 }

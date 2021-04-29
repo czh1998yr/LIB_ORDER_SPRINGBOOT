@@ -60,6 +60,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
   }
 
   @Override
+  public Result<Object> UPWD(User user) {
+    String userExist = userMapper.findByEmail(user.getEmail());
+    String newpassword = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+    if (userExist == null || !userExist.equals(user.getEmail())){
+      return Result.failure(ResultCode.USER_UPWD_ERROR);
+    }else {
+      user.setPassword(newpassword);
+      userMapper.uppwd(user);
+      return Result.success();
+    }
+  }
+
+  @Override
   public User id(Integer id) {
     return userMapper.selectById(id);
   }

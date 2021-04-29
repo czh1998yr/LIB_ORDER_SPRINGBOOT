@@ -4,21 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.czh.labmaster.mapper.OrdersMapper">
-  <resultMap id="ResultMaporders" type="com.czh.labmaster.model.Orders">
-    <result property="id" column="id" jdbcType="INTEGER"/>
-    <result property="username" column="username" jdbcType="VARCHAR"/>
-    <result property="labname" column="labname" jdbcType="VARCHAR"/>
-    <result property="starttime" column="starttime" jdbcType="INTEGER"/>
-    <result property="endtime" column="endtime" jdbcType="INTEGER"/>
-  </resultMap>
+<!--  <resultMap id="ResultMaporders" type="com.czh.labmaster.model.Orders">-->
+<!--    <result property="id" column="id" jdbcType="INTEGER"/>-->
+<!--    <result property="username" column="username" jdbcType="VARCHAR"/>-->
+<!--    <result property="labname" column="labname" jdbcType="VARCHAR"/>-->
+<!--    <result property="starttime" column="starttime" jdbcType="INTEGER"/>-->
+<!--    <result property="endtime" column="endtime" jdbcType="INTEGER"/>-->
+<!--  </resultMap>-->
 
   <insert id="order">
-    INSERT INTO orders(username,labname,starttime,endtime,lid)VALUES(#{username}, #{labname}, #{starttime}, #{endtime},#{lid})
+    UPDATE orders set username = #{username},
+                      s1=#{s1},s2=#{s2},s3=#{s3},s4=#{s4},s5=#{s5},s6=#{s6},
+                      s7=#{s7},s8=#{s8},s9=#{s9},s10=#{s10},s11=#{s11},s12=#{s12}
+    WHERE id = #{id}
   </insert>
-  <select id="findTime" parameterType="com.czh.labmaster.model.Orders" resultMap="ResultMaporders">
-    SELECT starttime,endtime FROM orders WHERE labname = #{labname}
-  </select>
-  <select id="selectPageMyOrder" resultType="com.czh.labmaster.model.Orders">
-    SELECT * FROM orders WHERE username = #{username}
-  </select>
+    <select id="checkorders" resultType="com.czh.labmaster.model.Orders">
+      SELECT * FROM orders where week = #{week} AND labnum = #{labnum}
+    </select>
 </mapper>
