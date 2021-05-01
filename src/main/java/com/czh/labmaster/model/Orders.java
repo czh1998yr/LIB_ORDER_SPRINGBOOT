@@ -36,4 +36,17 @@ public class Orders {
   private Boolean s10;
   private Boolean s11;
   private Boolean s12;
+
+  private String u1="";
+  private String u2="";
+  private String u3="";
+  private String u4="";
+  private String u5="";
+  private String u6="";
+  private String u7="";
+  private String u8="";
+  private String u9="";
+  private String u10="";
+  private String u11="";
+  private String u12="";
 }

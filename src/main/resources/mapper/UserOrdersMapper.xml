@@ -8,9 +8,6 @@
     INSERT INTO user_orders(username,labname,labnum,date,create_time) VALUES (#{username},#{labname},#{labnum},#{date},current_timestamp)
   </insert>
 
-  <select id="selectPageMyOrder" resultType="com.czh.labmaster.model.UserOrders">
-    select * from user_orders where username=#{username}
-  </select>
   <select id="findByUsernameAndDate" resultType="com.czh.labmaster.model.UserOrders">
     select * from user_orders where username=#{username} and labnum=#{labnum} and labname=#{labname} and date=#{date}
   </select>

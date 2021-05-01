@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Repository
 public interface UserOrdersMapper extends BaseMapper<UserOrders> {
 
-  IPage<UserOrders> selectPageMyOrder(Page<UserOrders> page, String username);
   void addorders(@RequestBody JSONObject userorders);
   UserOrders findByUsernameAndDate(@RequestBody JSONObject userorders);
   IPage<UserOrders> selectPageUserOrderByName(Page<UserOrders> page, String username);

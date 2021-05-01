@@ -15,10 +15,23 @@
   <insert id="order">
     UPDATE orders set username = #{username},
                       s1=#{s1},s2=#{s2},s3=#{s3},s4=#{s4},s5=#{s5},s6=#{s6},
-                      s7=#{s7},s8=#{s8},s9=#{s9},s10=#{s10},s11=#{s11},s12=#{s12}
+                      s7=#{s7},s8=#{s8},s9=#{s9},s10=#{s10},s11=#{s11},s12=#{s12},
+                      u1=#{u1},u2=#{u2},u3=#{u3},u4=#{u4},u5=#{u5},u6=#{u6},u7=#{u7},u8=#{u8},u9=#{u9},u10=#{u10},u11=#{u11},u12=#{u12}
     WHERE id = #{id}
   </insert>
     <select id="checkorders" resultType="com.czh.labmaster.model.Orders">
       SELECT * FROM orders where week = #{week} AND labnum = #{labnum}
     </select>
+  <select id="selectPageMyOrder" resultType="com.czh.labmaster.model.Orders">
+    SELECT * FROM orders WHERE u1=#{username} OR u2=#{username} OR u3=#{username} OR
+      u4=#{username} OR u5=#{username} OR u6=#{username} OR
+      u7=#{username} OR u8=#{username} OR u9=#{username} OR
+      u10=#{username} OR u11=#{username} OR u12=#{username}
+  </select>
+  <select id="OrderByName" resultType="com.czh.labmaster.model.Orders">
+    SELECT * FROM orders WHERE u1 like #{username} OR u2 like #{username} OR u3 like #{username} OR
+      u4 like #{username} OR u5 like #{username} OR u6 like #{username} OR
+      u7 like #{username} OR u8 like #{username} OR u9 like #{username} OR
+      u10 like #{username} OR u11 like #{username} OR u12 like #{username}
+  </select>
 </mapper>

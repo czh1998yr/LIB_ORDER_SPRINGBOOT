@@ -15,7 +15,7 @@ public class AdminApiController extends BaseApiController {
   @Autowired
   AdminService adminService;
 
-  @RequestMapping("/adminlogin")
+  @RequestMapping("/login/admin")
   public Result<Object> login(Admin admin) {
     return adminService.login(admin);
   }

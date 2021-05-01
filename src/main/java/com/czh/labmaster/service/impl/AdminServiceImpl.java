@@ -3,12 +3,16 @@ package com.czh.labmaster.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.base.result.ResultCode;
+import com.czh.labmaster.base.utils.JWTUtils;
 import com.czh.labmaster.mapper.AdminMapper;
 import com.czh.labmaster.model.Admin;
 import com.czh.labmaster.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -26,7 +30,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper , Admin> implement
       String adminExistP = adminMapper.findPswByName(admin.getUsername());
       if (adminExistP.equals(newpassword)){
         //生成Token令牌
-        String token = UUID.randomUUID()+"";
+        Map<String,String> payload = new HashMap<>();
+        payload.put("username",admin.getUsername());
+        String token = JWTUtils.getToken(payload);
         return Result.success(token);
       }else {
         return Result.failure(ResultCode.USER_LOGIN_ERROR1);

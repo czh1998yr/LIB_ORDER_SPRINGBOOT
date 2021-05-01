@@ -11,6 +11,9 @@ import com.czh.labmaster.service.LabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Service
 public class LabServiceImpl extends ServiceImpl<LabMapper, Labs> implements LabService {
@@ -23,7 +26,6 @@ public class LabServiceImpl extends ServiceImpl<LabMapper, Labs> implements LabS
   @Override
   public IPage<Labs> AllLab(Integer size, Integer current, String major) {
     Page<Labs> page = new Page<>(current,size);
-
     return labMapper.AllLab(page,"%"+major+"%");
   }
 

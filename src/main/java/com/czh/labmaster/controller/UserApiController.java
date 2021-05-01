@@ -17,7 +17,7 @@ public class UserApiController extends BaseApiController {
   @Autowired
   UserService userService;
 
-  @RequestMapping("/login")
+  @RequestMapping("/login/user")
   public Result<Object> login(User user){
     return userService.login(user);
   }

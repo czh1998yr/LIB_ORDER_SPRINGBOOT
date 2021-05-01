@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.base.result.ResultCode;
+import com.czh.labmaster.base.utils.JWTUtils;
 import com.czh.labmaster.mapper.UserMapper;
 import com.czh.labmaster.model.User;
 import com.czh.labmaster.service.UserService;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -28,7 +31,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String userExistP = userMapper.findPswByName(user.getUsername());
         if (userExistP.equals(newpassword)){
           //生成Token令牌
-          String token = UUID.randomUUID()+"";
+          Map<String,String> payload = new HashMap<>();
+          payload.put("username",user.getUsername());
+          String token = JWTUtils.getToken(payload);
           return Result.success(token);
         }else {
           return Result.failure(ResultCode.USER_LOGIN_ERROR1);

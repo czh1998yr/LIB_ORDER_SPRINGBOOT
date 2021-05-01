@@ -2,6 +2,7 @@ package com.czh.labmaster.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.czh.labmaster.base.controller.BaseApiController;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.model.Orders;
@@ -31,20 +32,20 @@ public class OrderApiController extends BaseApiController {
   @RequestMapping("/checkorders")
   public IPage<Orders> checkorders(Integer size, Integer current, Integer week, Integer labnum){return ordersService.checkorders(size,current,week,labnum);};
 
-  @RequestMapping("/adduserorders")
+  @RequestMapping("/adduserorder")
   public Result<Object> adduserorders(@RequestBody JSONArray userorders) throws ParseException{
     return userOrdersService.adduserorders(userorders);
   }
-
-  @RequestMapping("/myorders")
-  public IPage<UserOrders> selectPageMyOrder(Integer size, Integer current, String username){return userOrdersService.selectPageMyOrder(size,current,username);};
 
   @RequestMapping("/delmyordersbyid")
   Result<Object> delbyid(Integer id) throws ParseException{return userOrdersService.delbyid(id);}
 
   @RequestMapping("/userorders")
-  public IPage<UserOrders> selectPageUserOrder(Integer size, Integer current){return userOrdersService.selectPageUserOrder(size,current);};
+  public IPage<Orders> selectall(Integer size, Integer current){return ordersService.selectall(size,current);};
 
   @RequestMapping("/nameorders")
-  public IPage<UserOrders> selectPageUserOrderByName(Integer size, Integer current, String username){return userOrdersService.selectPageUserOrderByName(size,current,username);};
+  public IPage<Orders> OrderByName(Integer size, Integer current, String username){return ordersService.OrderByName(size,current,username);};
+
+  @RequestMapping("/myorders")
+  IPage<Orders> selectPageMyOrder(Integer size, Integer current, String username){return ordersService.selectPageMyOrder(size,current,username);};
 }

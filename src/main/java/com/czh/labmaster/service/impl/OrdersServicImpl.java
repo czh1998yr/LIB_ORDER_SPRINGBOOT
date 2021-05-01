@@ -9,6 +9,7 @@ import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.mapper.LabMapper;
 import com.czh.labmaster.mapper.OrdersMapper;
 import com.czh.labmaster.model.Orders;
+import com.czh.labmaster.model.UserOrders;
 import com.czh.labmaster.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,23 @@ public class OrdersServicImpl extends ServiceImpl<OrdersMapper, Orders> implemen
   public IPage<Orders> checkorders(Integer size, Integer current, Integer week, Integer labnum) {
     Page<Orders> page = new Page<>(current,size);
     return ordersMapper.checkorders(page,week,labnum);
+  }
+
+  @Override
+  public IPage<Orders> selectPageMyOrder(Integer size, Integer current, String username) {
+    Page<Orders> page = new Page<>(current,size);
+    return ordersMapper.selectPageMyOrder(page,username);
+  }
+
+  @Override
+  public IPage<Orders> selectall(Integer size, Integer current) {
+    Page<Orders> page = new Page<>(current,size);
+    return ordersMapper.selectPage(page,null);
+  }
+
+  @Override
+  public IPage<Orders> OrderByName(Integer size, Integer current, String username) {
+    Page<Orders> page = new Page<>(current,size);
+    return ordersMapper.OrderByName(page,"%"+username+"%");
   }
 }

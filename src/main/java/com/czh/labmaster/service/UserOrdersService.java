@@ -12,9 +12,7 @@ import java.text.ParseException;
 
 
 public interface UserOrdersService extends IService<UserOrders> {
-  IPage<UserOrders> selectPageMyOrder(Integer size, Integer current, String username);
+//  IPage<UserOrders> selectPageMyOrder(Integer size, Integer current, String username);
   Result<Object> adduserorders(@RequestBody JSONArray userorders) throws ParseException;
   Result<Object> delbyid(Integer id) throws ParseException;
-  IPage<UserOrders> selectPageUserOrder(Integer size, Integer current);
-  IPage<UserOrders> selectPageUserOrderByName(Integer size, Integer current, String username);
 }
