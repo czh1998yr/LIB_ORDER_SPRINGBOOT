@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.czh.labmaster.base.controller.BaseApiController;
 import com.czh.labmaster.base.result.Result;
+import com.czh.labmaster.model.CancelOrder;
 import com.czh.labmaster.model.Orders;
 import com.czh.labmaster.model.UserOrders;
+import com.czh.labmaster.service.CancelOrderService;
 import com.czh.labmaster.service.OrdersService;
 import com.czh.labmaster.service.UserOrdersService;
 
@@ -25,6 +27,9 @@ public class OrderApiController extends BaseApiController {
 
   @Autowired
   UserOrdersService userOrdersService;
+
+  @Autowired
+  CancelOrderService cancelOrderService;
 
   @RequestMapping("/order")
   public Result<Object> order(@RequestBody JSONArray orders) throws ParseException {return ordersService.lab_order(orders);}
@@ -48,4 +53,13 @@ public class OrderApiController extends BaseApiController {
 
   @RequestMapping("/myorders")
   IPage<Orders> selectPageMyOrder(Integer size, Integer current, String username){return ordersService.selectPageMyOrder(size,current,username);};
+
+  @RequestMapping("/cancelapply")
+  Result<Object> addmessage(CancelOrder cancelOrder) throws ParseException{return cancelOrderService.addmessage(cancelOrder);};
+
+  @RequestMapping("/handle")
+  public IPage<CancelOrder> selectPagecancel(Integer size, Integer current, String state){return cancelOrderService.selectPagecancel(size,current,state);};
+
+  @RequestMapping("/upstate")
+  public Result<Object> upstate(int id) throws ParseException{return cancelOrderService.upstate(id);};
 }

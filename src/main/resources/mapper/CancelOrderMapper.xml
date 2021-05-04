@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.czh.labmaster.mapper.CancelOrderMapper">
+
+  <insert id="addmessage">
+    INSERT into cancel_order(username,labname,labnum,date,session,state,week,day,create_time)
+     VALUES (#{username},#{labname},#{labnum},#{date},#{session},"未处理",#{week},#{day},current_timestamp)
+  </insert>
+  <update id="upstate">
+    UPDATE cancel_order set state = '已处理' WHERE id = #{id}
+  </update>
+  <select id="selectbystate" resultType="com.czh.labmaster.model.CancelOrder">
+    select * from cancel_order where state like #{state}
+  </select>
+</mapper>
