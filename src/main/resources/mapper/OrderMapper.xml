@@ -34,4 +34,7 @@
       u7 like #{username} OR u8 like #{username} OR u9 like #{username} OR
       u10 like #{username} OR u11 like #{username} OR u12 like #{username}
   </select>
+  <select id="checkorder" resultType="com.czh.labmaster.model.Orders">
+    select * FROM orders where week BETWEEN #{week1} and #{week2}  or week BETWEEN #{week2} and #{week1} AND labnum = #{labnum}
+  </select>
 </mapper>

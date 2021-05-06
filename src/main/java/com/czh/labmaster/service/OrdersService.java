@@ -20,4 +20,5 @@ public interface OrdersService extends IService<Orders> {
   IPage<Orders> selectPageMyOrder(Integer size, Integer current, String username);
   IPage<Orders> selectall(Integer size, Integer current);
   IPage<Orders> OrderByName(Integer size, Integer current, String username);
+  IPage<Orders> checkorder(Integer size, Integer current, Integer week1, Integer week2,Integer labnum);
 }

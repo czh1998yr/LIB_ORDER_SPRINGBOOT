@@ -63,4 +63,10 @@ public class OrdersServicImpl extends ServiceImpl<OrdersMapper, Orders> implemen
     Page<Orders> page = new Page<>(current,size);
     return ordersMapper.OrderByName(page,"%"+username+"%");
   }
+
+  @Override
+  public IPage<Orders> checkorder(Integer size, Integer current, Integer week1, Integer week2, Integer labnum) {
+    Page<Orders> page = new Page<>(current,size);
+    return ordersMapper.checkorder(page,week1,week2,labnum);
+  }
 }

@@ -62,4 +62,9 @@ public class OrderApiController extends BaseApiController {
 
   @RequestMapping("/upstate")
   public Result<Object> upstate(int id) throws ParseException{return cancelOrderService.upstate(id);};
+
+  @RequestMapping("/checkorder")
+  public IPage<Orders> checkorder(Integer size, Integer current, Integer week1, Integer week2, Integer labnum){
+    return ordersService.checkorder(size,current,week1,week2,labnum);
+  };
 }

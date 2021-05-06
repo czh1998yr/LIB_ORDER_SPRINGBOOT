@@ -17,4 +17,5 @@ public interface OrdersMapper extends BaseMapper<Orders> {
     IPage<Orders> checkorders(Page<Orders> page, Integer week, Integer labnum);
   IPage<Orders> selectPageMyOrder(Page<Orders> page, String username);
   IPage<Orders> OrderByName(Page<Orders> page, String username);
+  IPage<Orders> checkorder(Page<Orders> page, Integer week1, Integer week2, Integer labnum);
 }
