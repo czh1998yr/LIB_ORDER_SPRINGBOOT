@@ -4,6 +4,7 @@ package com.czh.labmaster.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.czh.labmaster.base.controller.BaseApiController;
+import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.model.Orders;
 import com.czh.labmaster.model.Term;
 import com.czh.labmaster.model.Week;
@@ -35,4 +36,7 @@ public class WeekApiControl extends BaseApiController {
 
   @RequestMapping("/checkLabByWeek")
   IPage<Week> checkLabByWeek(Integer size, Integer current, Integer week){return weekService.checkLabByWeek(size,current,week);};
+
+  @RequestMapping("/getall")
+  List<Week> allweek(Integer termstate){return weekService.allweek(termstate);};
 }

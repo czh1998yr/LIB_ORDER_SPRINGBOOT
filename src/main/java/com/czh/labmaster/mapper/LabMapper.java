@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LabMapper extends BaseMapper<Labs> {
   //  获取所有实验室列表
-  IPage<Labs> AllLab(Page<Labs> page, String major);
   void addlab(Labs labs);
   void revise(Labs labs);
   void upState(String state,int id);
   Labs selectBylabnum(Integer labnum);
+  IPage<Labs> selectPageByLabname(Page<Labs> page, String labname);
 }

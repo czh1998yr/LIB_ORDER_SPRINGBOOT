@@ -12,22 +12,21 @@
 <!--    <result property="state" column="state" jdbcType="VARCHAR"/>-->
 <!--   </resultMap>-->
   <insert id="addlab">
-    insert into labs(labname,major,labnum) value (#{labname},#{major},#{labnum})
+    insert into labs(labname,labnum) value (#{labname},#{labnum})
   </insert>
   <update id="revise">
-    update labs set name = #{name},major= #{major}, num= #{num} WHERE id = #{id}
+    update labs set labname = #{labname},labnum= #{labnum} WHERE id = #{id}
   </update>
   <update id="upState">
     update labs set state = #{state} where id=#{id}
   </update>
-<!--  //  获取所有实验室列表-->
-  <select id="AllLab" resultType="com.czh.labmaster.model.Labs">
-    select * from labs  where major like #{major}
-  </select>
   <select id="findAll" resultType="com.czh.labmaster.model.Week">
     select * from week group by week
   </select>
   <select id="selectBylabnum" resultType="com.czh.labmaster.model.Labs">
     select * FROM labs where labnum = #{labnum}
+  </select>
+  <select id="selectPageByLabname" resultType="com.czh.labmaster.model.Labs">
+    select * from labs where labname like #{labname}
   </select>
 </mapper>

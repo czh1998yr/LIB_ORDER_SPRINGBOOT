@@ -12,9 +12,7 @@ import lombok.Data;
 public class Orders {
 
   private Long id;
-  private String username="";
   private String labname="";
-  private String major="";
   private Long labnum;
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")

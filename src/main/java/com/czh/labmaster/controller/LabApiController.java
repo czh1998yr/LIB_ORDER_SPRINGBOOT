@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.czh.labmaster.base.controller.BaseApiController;
 import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.model.Labs;
+import com.czh.labmaster.model.Week;
 import com.czh.labmaster.service.LabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -21,8 +24,10 @@ public class LabApiController extends BaseApiController {
 
   //  获取所有实验室列表
   @RequestMapping("/lablist")
-  IPage<Labs> selectPageVo(Integer size, Integer current, String major) {
-    return labService.AllLab(size,current,major);}
+  List<Labs> AllLab(){return labService.AllLab();}
+
+  @RequestMapping("/lablistpage")
+  public IPage<Labs> allpage(Integer size, Integer current,String labname){return labService.allpage(size,current,labname);};
 
   @RequestMapping("/lablabnum")
   public Labs labnum(Integer labnum){return labService.labnum(labnum);};

@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class Labs {
   private Long id;
   private String labname="";
-  private String major="";
   private Long labnum;
 }

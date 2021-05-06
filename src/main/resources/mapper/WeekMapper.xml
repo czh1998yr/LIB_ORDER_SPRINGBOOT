@@ -10,4 +10,7 @@
   <select id="checkLabByWeek" resultType="com.czh.labmaster.model.Week">
     select * from week WHERE `week` = #{week}
   </select>
+  <select id="findAllday" resultType="com.czh.labmaster.model.Week">
+    select * from week where termstate = #{termstate}
+  </select>
 </mapper>

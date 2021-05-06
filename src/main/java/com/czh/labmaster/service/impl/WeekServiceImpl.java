@@ -3,6 +3,7 @@ package com.czh.labmaster.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.czh.labmaster.base.result.Result;
 import com.czh.labmaster.mapper.TermMapper;
 import com.czh.labmaster.mapper.WeekMapper;
 import com.czh.labmaster.model.Orders;
@@ -30,5 +31,10 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper,Week> implements Wee
   public IPage<Week> checkLabByWeek(Integer size, Integer current, Integer week) {
     Page<Week> page = new Page<>(current,size);
     return weekMapper.checkLabByWeek(page,week);
+  }
+
+  @Override
+  public List<Week> allweek(Integer termstate) {
+    return weekMapper.findAllday(termstate);
   }
 }

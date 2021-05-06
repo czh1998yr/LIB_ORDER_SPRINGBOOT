@@ -35,6 +35,7 @@ public class OrdersServicImpl extends ServiceImpl<OrdersMapper, Orders> implemen
   public Result<Object> lab_order(@RequestBody JSONArray orders) throws ParseException {
     for (int i =0; i<orders.size();i++) {
       ordersMapper.order(orders.getJSONObject(i));
+      System.out.println(orders.getJSONObject(i));
     }
     return Result.success();
   }
@@ -67,6 +68,9 @@ public class OrdersServicImpl extends ServiceImpl<OrdersMapper, Orders> implemen
   @Override
   public IPage<Orders> checkorder(Integer size, Integer current, Integer week1, Integer week2, Integer labnum) {
     Page<Orders> page = new Page<>(current,size);
+    System.out.println(week1);
+    System.out.println(week2);
+    System.out.println(labnum);
     return ordersMapper.checkorder(page,week1,week2,labnum);
   }
 }
